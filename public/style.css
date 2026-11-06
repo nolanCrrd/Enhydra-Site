@@ -212,15 +212,13 @@ img.avatar { border: 2px solid var(--line); background: var(--card); }
 
 /* ───────── Ouverture du site : un rideau avec la loutre, puis tout entre en scène ───────── */
 :root { --t0: 0s; }
-.js:not(.no-intro) { --t0: 1.25s; }
+.js:not(.no-intro) { --t0: 2.1s; }
 #intro { display: none; }
-.js:not(.no-intro) #intro { display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; background: var(--bg); animation: curtain .8s var(--out) 1.05s forwards; }
-.intro-in { position: relative; display: grid; justify-items: center; gap: 44px; }
-.intro-in img { width: 96px; height: 96px; border-radius: 26px; animation: logopop .8s var(--spring) .1s both; box-shadow: 0 16px 40px #2b1d1630; }
-.intro-in b { font: 500 2rem var(--serif); animation: rise .6s var(--out) .45s both; }
-.intro-in .ring { position: absolute; top: -12px; left: 50%; margin-left: -60px; width: 120px; height: 120px; border-radius: 30px; border: 3px solid var(--teal); animation: ringout 1s ease-out .35s both; }
-@keyframes logopop { from { opacity: 0; transform: scale(.2) rotate(-25deg); } 60% { transform: scale(1.12) rotate(4deg); } }
-@keyframes ringout { from { opacity: .9; transform: scale(.7); } to { opacity: 0; transform: scale(1.6); } }
+.js:not(.no-intro) #intro { display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; background: var(--bg); animation: curtain .8s var(--out) 1.8s forwards; }
+.intro-in { display: grid; justify-items: center; gap: 6px; }
+.intro-in .swim { width: min(340px, 78vw); height: auto; animation: swimin .7s var(--out) both; }
+.intro-in b { font: 500 2rem var(--serif); animation: rise .6s var(--out) .5s both; }
+@keyframes swimin { from { opacity: 0; transform: translateY(18px) scale(.9); } }
 @keyframes curtain { to { transform: translateY(-100%); visibility: hidden; } }
 .js header.top .brand, .js header.top nav a { opacity: 0; animation: dropin .7s var(--spring) forwards; }
 .js header.top .brand { animation-delay: calc(var(--t0) + .05s); }

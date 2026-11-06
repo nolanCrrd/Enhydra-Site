@@ -17,12 +17,13 @@ HEAD = """<!doctype html>
 <link rel="icon" type="image/png" href="/img/favicon-64.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/loutre-nage.svg" as="image">
 <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css?v={css}">
 <script src="/site.js?v={js}"></script>
 </head>
 <body>
-<div id="intro" aria-hidden="true"><div class="intro-in"><span class="ring"></span><img src="/img/logo-192.png" alt="" width="96" height="96"><b>Enhydra</b></div></div>
+<div id="intro" aria-hidden="true"><div class="intro-in"><img class="swim" src="/img/loutre-nage.svg" alt="" width="340" height="126"><b>Enhydra</b></div></div>
 <div id="progress" aria-hidden="true"></div>
 <header class="top"><div class="wrap">
   <a class="brand" href="/"><img src="/img/logo-192.png" alt="" width="36" height="36">Enhydra</a>
