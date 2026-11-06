@@ -190,7 +190,7 @@ PAGES = {
     "404.html": ("Page introuvable · Enhydra", "Page introuvable.", NOTFOUND),
 }
 
-root = Path(__file__).parent
+root = Path(__file__).parent / "public"
 for name, (title, desc, body) in PAGES.items():
     (root / name).write_text(HEAD.format(title=title, desc=desc) + body + FOOT, encoding="utf-8")
     print("écrit", name)
