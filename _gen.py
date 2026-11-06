@@ -1,4 +1,5 @@
 """Génère les pages du site (HTML statique). `python3 _gen.py` puis déployer le dossier tel quel."""
+import hashlib
 from pathlib import Path
 
 HEAD = """<!doctype html>
@@ -17,8 +18,8 @@ HEAD = """<!doctype html>
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css">
-<script src="/site.js"></script>
+<link rel="stylesheet" href="/style.css?v={css}">
+<script src="/site.js?v={js}"></script>
 </head>
 <body>
 <div id="intro" aria-hidden="true"><div class="intro-in"><span class="ring"></span><img src="/img/logo-192.png" alt="" width="96" height="96"><b>Enhydra</b></div></div>
@@ -222,6 +223,14 @@ PAGES = {
 }
 
 root = Path(__file__).parent / "public"
+
+
+def digest(name: str) -> str:
+    """Empreinte du fichier : l'adresse change quand il change, un navigateur ne garde jamais une vieille version."""
+    return hashlib.sha1((root / name).read_bytes()).hexdigest()[:8]
+
+
+CSS, JS = digest("style.css"), digest("site.js")
 for name, (title, desc, body) in PAGES.items():
-    (root / name).write_text(HEAD.format(title=title, desc=desc) + body + FOOT, encoding="utf-8")
+    (root / name).write_text(HEAD.format(title=title, desc=desc, css=CSS, js=JS) + body + FOOT, encoding="utf-8")
     print("écrit", name)
