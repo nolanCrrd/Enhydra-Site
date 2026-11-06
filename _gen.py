@@ -10,6 +10,7 @@ HEAD = """<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#f3eee8">
+<meta name="google-site-verification" content="vz8DcHir2hpwtQemUgFwUirm2JJW7QrIQrmrnhKGtM4">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="/img/logo-512.png">
