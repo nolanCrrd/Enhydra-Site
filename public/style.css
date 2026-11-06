@@ -93,8 +93,8 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
 :root { --spring: cubic-bezier(.34, 1.56, .64, 1); --out: cubic-bezier(.22, 1, .36, 1); }
 
 #progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 50; background: linear-gradient(90deg, var(--teal), var(--brown)); transform: scaleX(0); transform-origin: left; }
-header.top { position: sticky; top: 0; z-index: 40; transition: background .3s, box-shadow .3s, padding .3s; }
-header.top.stuck { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); padding: 10px 0; }
+header.top { position: sticky; top: 0; z-index: 40; transition: background .3s, box-shadow .3s; }
+header.top.stuck { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
 .brand img { transition: transform .5s var(--spring); }
 .brand:hover img { transform: rotate(-12deg) scale(1.12); }
 
@@ -105,20 +105,20 @@ header.top.stuck { background: color-mix(in srgb, var(--bg) 82%, transparent); b
 .blob.b1 { width: 420px; height: 420px; background: var(--teal); top: -120px; right: -80px; animation: drift 16s ease-in-out infinite alternate; }
 .blob.b2 { width: 340px; height: 340px; background: #d98c5f; bottom: -140px; left: -80px; animation: drift 20s ease-in-out infinite alternate-reverse; }
 @keyframes drift { to { transform: translate(40px, 30px) scale(1.12); } }
-.js .split span { display: inline-block; opacity: 0; transform: translateY(.5em) scale(.9); animation: wordpop .7s var(--spring) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
+.js .split span { display: inline-block; opacity: 0; transform: translateY(.5em) scale(.9); animation: wordpop .7s var(--spring) forwards; animation-delay: calc(var(--t0) + var(--i) * 90ms + 150ms); }
 @keyframes wordpop { to { opacity: 1; transform: none; } }
 .js .hero .lead, .js .hero .rotor, .js .hero .cta { opacity: 0; animation: rise .8s var(--out) forwards; }
-.js .hero .lead { animation-delay: .65s; } .js .hero .rotor { animation-delay: .8s; } .js .hero .cta { animation-delay: .95s; }
+.js .hero .lead { animation-delay: calc(var(--t0) + .65s); } .js .hero .rotor { animation-delay: calc(var(--t0) + .8s); } .js .hero .cta { animation-delay: calc(var(--t0) + .95s); }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.rotor { font: 500 1.25rem var(--serif); color: var(--mute); margin: -10px 0 26px; min-height: 1.6em; }
+.rotor { font: 500 clamp(1.05rem, 4.6vw, 1.25rem) var(--serif); color: var(--mute); margin: -10px 0 26px; height: 1.7em; white-space: nowrap; overflow: hidden; }
 .rotor b { color: var(--teal); font-weight: 500; display: inline-block; transition: opacity .35s, transform .35s var(--out); }
 .rotor b.out { opacity: 0; transform: translateY(-.4em); }
 .rotor b.in { opacity: 0; transform: translateY(.4em); transition: none; }
 
 .shots { perspective: 900px; }
 .js .shots img { opacity: 0; animation: phonein 1s var(--spring) forwards, bob 6s ease-in-out 1.2s infinite; }
-.js .shots img:nth-child(1) { animation-delay: .5s, 1.5s; }
-.js .shots img:nth-child(2) { animation-delay: .75s, 2.2s; }
+.js .shots img:nth-child(1) { animation-delay: calc(var(--t0) + .5s), calc(var(--t0) + 1.5s); }
+.js .shots img:nth-child(2) { animation-delay: calc(var(--t0) + .75s), calc(var(--t0) + 2.2s); }
 @keyframes phonein { from { opacity: 0; translate: 0 60px; } to { opacity: 1; translate: 0 0; } }
 @keyframes bob { 50% { translate: 0 -10px; } }
 .shots { --rx: 0deg; --ry: 0deg; }
@@ -146,7 +146,7 @@ header.top.stuck { background: color-mix(in srgb, var(--bg) 82%, transparent); b
 section.stats { padding: 20px 0 8px; }
 .stats .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; text-align: center; }
 .stats .wrap > div { padding: 20px 10px; }
-.stats b { display: block; font: 500 clamp(2.6rem, 7vw, 3.8rem)/1 var(--serif); color: var(--teal); }
+.stats b { display: block; font-variant-numeric: tabular-nums; min-height: 1em; font: 500 clamp(2.6rem, 7vw, 3.8rem)/1 var(--serif); color: var(--teal); }
 .stats span { color: var(--mute); }
 
 /* Démo du chat */
@@ -163,23 +163,28 @@ section.stats { padding: 20px 0 8px; }
 .phone-bar { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); font: 500 1.125rem var(--serif); }
 .phone-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 0 #2f7f7255; animation: ping 2s infinite; }
 @keyframes ping { 70% { box-shadow: 0 0 0 10px #2f7f7200; } 100% { box-shadow: 0 0 0 0 #2f7f7200; } }
-.chat { height: 340px; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; font-size: .9688rem; line-height: 1.45; overflow: hidden; }
-.msg { max-width: 86%; padding: 10px 14px; border-radius: 18px; animation: bubble .5s var(--spring); }
-.msg.me { align-self: flex-end; background: var(--brown); color: var(--on); border-bottom-right-radius: 6px; }
-.msg.bot { align-self: flex-start; background: var(--bg); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
-.msg .caret { display: inline-block; width: 2px; height: 1em; background: currentColor; margin-left: 1px; vertical-align: -2px; animation: blink 1s steps(2) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-@keyframes bubble { from { opacity: 0; transform: translateY(12px) scale(.85); } }
-.typing { align-self: flex-start; display: flex; gap: 5px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 18px; border-bottom-left-radius: 6px; animation: bubble .4s var(--spring); }
-.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); animation: dots 1s infinite; }
-.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
-@keyframes dots { 40% { transform: translateY(-6px); opacity: .5; } }
-.cardmsg { align-self: flex-start; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 16px; background: var(--card); border: 2px solid var(--teal); animation: cardpop .7s var(--spring); }
-@keyframes cardpop { 0% { opacity: 0; transform: scale(.6) rotate(-4deg); } }
+.chat { height: 372px; padding: 16px 14px; display: flex; flex-direction: column; justify-content: center; gap: 14px; font-size: .9688rem; line-height: 1.45; overflow: hidden; }
+.row { display: flex; align-items: flex-end; gap: 8px; }
+.row.me { flex-direction: row-reverse; }
+.row.res { padding-left: 42px; }
+.avatar { flex: none; width: 34px; height: 34px; border-radius: 50%; }
+.avatar.you { display: grid; place-items: center; background: var(--teal); color: #fff; font: 600 .75rem var(--sans); }
+img.avatar { border: 2px solid var(--line); background: var(--card); }
+.msg { max-width: 78%; padding: 10px 14px; border-radius: 18px; }
+.msg.me { background: var(--brown); color: var(--on); border-bottom-right-radius: 5px; }
+.msg.bot { background: var(--bg); border: 1px solid var(--line); border-bottom-left-radius: 5px; }
+.cardmsg { display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 16px; background: var(--card); border: 2px solid var(--teal); }
 .cardmsg .ico { width: 36px; height: 36px; flex: none; border-radius: 50%; background: var(--teal); position: relative; }
 .cardmsg .ico::after { content: ""; position: absolute; left: 12px; top: 9px; width: 8px; height: 14px; border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
 .cardmsg span { display: grid; line-height: 1.3; }
 .cardmsg small { color: var(--mute); }
+/* Chaque bulle occupe sa place dès le départ (rien ne bouge quand elle apparaît) : elle « pop » depuis son avatar */
+.js .row { opacity: 0; transform: scale(.3); transform-origin: 20px 100%; transition: opacity .25s, transform .55s var(--spring); }
+.js .row.me { transform-origin: calc(100% - 20px) 100%; }
+.js .row.res { transform-origin: 40px 0; }
+.js .row.on { opacity: 1; transform: none; }
+.phone-bar img { border-radius: 8px; }
+.phone-bar .dot { margin-left: auto; }
 
 /* Cases à cocher des atouts : la coche se dessine */
 .js ul.checks li::before { transition: transform .5s var(--spring) .2s; transform: rotate(-45deg) scale(0); }
@@ -204,3 +209,25 @@ section.stats { padding: 20px 0 8px; }
 .hero::after { bottom: 0; background: linear-gradient(transparent, var(--bg)); }
 .hero { isolation: isolate; }
 .blob { z-index: -1; }
+
+/* ───────── Ouverture du site : un rideau avec la loutre, puis tout entre en scène ───────── */
+:root { --t0: 0s; }
+.js:not(.no-intro) { --t0: 1.25s; }
+#intro { display: none; }
+.js:not(.no-intro) #intro { display: grid; place-items: center; position: fixed; inset: 0; z-index: 100; background: var(--bg); animation: curtain .8s var(--out) 1.05s forwards; }
+.intro-in { position: relative; display: grid; justify-items: center; gap: 44px; }
+.intro-in img { width: 96px; height: 96px; border-radius: 26px; animation: logopop .8s var(--spring) .1s both; box-shadow: 0 16px 40px #2b1d1630; }
+.intro-in b { font: 500 2rem var(--serif); animation: rise .6s var(--out) .45s both; }
+.intro-in .ring { position: absolute; top: -12px; left: 50%; margin-left: -60px; width: 120px; height: 120px; border-radius: 30px; border: 3px solid var(--teal); animation: ringout 1s ease-out .35s both; }
+@keyframes logopop { from { opacity: 0; transform: scale(.2) rotate(-25deg); } 60% { transform: scale(1.12) rotate(4deg); } }
+@keyframes ringout { from { opacity: .9; transform: scale(.7); } to { opacity: 0; transform: scale(1.6); } }
+@keyframes curtain { to { transform: translateY(-100%); visibility: hidden; } }
+.js header.top .brand, .js header.top nav a { opacity: 0; animation: dropin .7s var(--spring) forwards; }
+.js header.top .brand { animation-delay: calc(var(--t0) + .05s); }
+.js header.top nav a:nth-child(1) { animation-delay: calc(var(--t0) + .15s); }
+.js header.top nav a:nth-child(2) { animation-delay: calc(var(--t0) + .22s); }
+.js header.top nav a:nth-child(3) { animation-delay: calc(var(--t0) + .29s); }
+@keyframes dropin { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: none; } }
+.js .blob { opacity: 0; animation: blobin 1.6s ease-out calc(var(--t0) + .1s) forwards, drift 16s ease-in-out calc(var(--t0) + 1.7s) infinite alternate; }
+@keyframes blobin { to { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { #intro { display: none !important; } .js header.top .brand, .js header.top nav a, .js .blob { opacity: 1 !important; } .js .blob { opacity: .45 !important; } }

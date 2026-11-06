@@ -1,6 +1,13 @@
 // Animations du site : apparitions au défilement, chat de démonstration, chiffres qui montent, copie des commandes.
 // Rien n'est nécessaire pour lire le site : sans JavaScript, tout est visible tel quel.
 document.documentElement.classList.add("js");
+// Le rideau d'ouverture ne passe qu'une fois par visite (et jamais si la personne veut moins de mouvement)
+try {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || sessionStorage.getItem("intro")) document.documentElement.classList.add("no-intro");
+  else sessionStorage.setItem("intro", "1");
+} catch {
+  document.documentElement.classList.add("no-intro");
+}
 
 addEventListener("DOMContentLoaded", () => {
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -101,7 +108,8 @@ addEventListener("DOMContentLoaded", () => {
     }),
   );
 
-  // Chat de démonstration : le message s'écrit, Hermes réfléchit, répond, et la carte apparaît
+  // Chat de démonstration : deux bulles qui se répondent, chacune « pop » à sa place (toutes sont déjà dans la page,
+  // invisibles : rien ne se décale quand l'une apparaît), puis la carte de confirmation.
   const chat = $("#chat");
   if (chat) {
     const SCENES = [
@@ -110,60 +118,43 @@ addEventListener("DOMContentLoaded", () => {
       { me: "Chaque matin à 7 h, résume-moi l'actualité tech", bot: "Fait. Ton résumé arrivera chaque matin à 7 h sur ton accueil.", title: "Résumé tech", meta: "Tous les jours · 7 h 00" },
     ];
     const chips = $$(".chip");
+    const rows = $$(".row", chat);
     let run = 0;
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-    const el = (cls, html = "") => Object.assign(document.createElement("div"), { className: cls, innerHTML: html });
-    const show = (n) => {
+
+    async function play(n, id) {
+      const s = SCENES[n];
       chips.forEach((c, k) => {
         c.classList.toggle("on", k === n);
         c.setAttribute("aria-selected", String(k === n));
       });
-    };
-
-    async function play(n, id) {
-      const s = SCENES[n];
-      show(n);
-      chat.replaceChildren();
-      const me = el("msg me");
-      chat.append(me);
-      for (let k = 1; k <= s.me.length; k++) {
-        if (id !== run) return;
-        const caret = Object.assign(document.createElement("span"), { className: "caret" });
-        me.replaceChildren(document.createTextNode(s.me.slice(0, k)), caret);
-        await sleep(28);
-      }
-      me.textContent = s.me;
+      rows.forEach((r) => r.classList.remove("on"));
       await sleep(350);
-      const dots = el("typing", "<i></i><i></i><i></i>");
-      chat.append(dots);
-      await sleep(1100);
       if (id !== run) return;
-      dots.remove();
-      chat.append(el("msg bot", s.bot.replace(/&/g, "&amp;").replace(/</g, "&lt;")));
-      await sleep(550);
-      if (id !== run) return;
-      const card = el("cardmsg");
-      card.innerHTML = '<i class="ico"></i><span><b></b><small></small></span>';
-      $("b", card).textContent = s.title;
-      $("small", card).textContent = s.meta;
-      chat.append(card);
-      await sleep(3800);
-      if (id === run) play((n + 1) % SCENES.length, run);
+      $("#m-me").textContent = s.me;
+      $("#m-bot").textContent = s.bot;
+      $("#m-title").textContent = s.title;
+      $("#m-meta").textContent = s.meta;
+      for (const [k, row] of rows.entries()) {
+        row.classList.add("on");
+        await sleep(k === 0 ? 1100 : 1000);
+        if (id !== run) return;
+      }
+      await sleep(3200);
+      if (id === run) play((n + 1) % SCENES.length, id);
     }
 
     const start = (n) => play(n, ++run);
     chips.forEach((c) => c.addEventListener("click", () => start(Number(c.dataset.scene))));
 
-    if (still || !("IntersectionObserver" in window)) {
-      // sans animation : on montre simplement la première scène terminée (déjà dans la page)
-    } else {
+    if (!still && "IntersectionObserver" in window) {
+      rows.forEach((r) => r.classList.remove("on")); // elles apparaîtront quand la démo sera à l'écran
       const io = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          io.disconnect();
-          start(0);
-        }
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        start(0);
       }, { threshold: 0.4 });
       io.observe(chat);
-    }
+    } else rows.forEach((r) => r.classList.add("on")); // sans animation : la première scène, terminée
   }
 });
