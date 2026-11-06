@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité · Enhydra</title>
+<meta name="description" content="Ce que contient une instance Enhydra, ce qui est partagé avec des tiers, et comment arrêter.">
+<meta name="theme-color" content="#f3eee8">
+<meta property="og:title" content="Politique de confidentialité · Enhydra">
+<meta property="og:description" content="Ce que contient une instance Enhydra, ce qui est partagé avec des tiers, et comment arrêter.">
+<meta property="og:image" content="/img/logo-512.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><img src="/img/logo-192.png" alt="" width="36" height="36">Enhydra</a>
+  <nav aria-label="Principal">
+    <a class="opt" href="/#fonctions">Fonctions</a>
+    <a class="opt" href="/#installer">Installer</a>
+    <a href="https://github.com/nolanCrrd/Enhydra">GitHub</a>
+  </nav>
+</div></header>
+<main>
+<div class="wrap narrow doc">
+<h1>Politique de confidentialité</h1>
+<p class="date">Dernière mise à jour : 6 novembre 2026</p>
+
+<p class="notice">En bref : Enhydra est un logiciel que chacun installe sur son propre serveur. Son éditeur n'a accès à aucune donnée des instances. Ce site ne dépose aucun cookie et ne mesure aucune audience.</p>
+
+<h2>1. Qui est concerné</h2>
+<p>Enhydra est un logiciel libre édité par Nolan Correard. Il existe en deux sens : ce site de présentation, et les <b>instances</b> d'Enhydra, installées et gérées par des particuliers sur leur propre serveur. La personne qui héberge une instance est responsable des données qui s'y trouvent (c'est à elle qu'il faut s'adresser pour exercer ses droits sur son compte).</p>
+
+<h2>2. Ce site</h2>
+<ul>
+<li>Aucun cookie, aucun traceur, aucun outil de mesure d'audience, aucun formulaire.</li>
+<li>Le site est hébergé par Cloudflare, qui conserve des journaux techniques (adresse IP, date) pour la sécurité et le fonctionnement du service.</li>
+</ul>
+
+<h2>3. Ce que contient une instance Enhydra</h2>
+<p>Selon l'usage de chaque personne : identifiant, nom affiché et mot de passe (conservé sous forme hachée, jamais en clair) ; conversations avec l'assistant Hermes et pièces jointes ; notes ; tâches et rendez-vous ; mots de passe rangés dans le Coffre (chiffrés) ; réglages et abonnements aux notifications. Tout est stocké sur le serveur de l'hébergeur, pas chez l'éditeur du logiciel.</p>
+
+<h2>4. Services tiers</h2>
+<ul>
+<li><b>Fournisseur d'intelligence artificielle</b> : pour répondre, Hermes envoie le contenu de la conversation (et, si tu le lui demandes, des notes ou des éléments de ton agenda) au fournisseur choisi par l'hébergeur ou par toi (Anthropic, OpenAI, OpenRouter, etc.). Sa propre politique de confidentialité s'applique.</li>
+<li><b>Notifications</b> : un relais gratuit sur Cloudflare Workers réveille le téléphone. Il ne voit passer qu'un identifiant technique, jamais le texte des messages.</li>
+</ul>
+
+<h2>4 bis. Connexion à Google Agenda (si tu l'actives)</h2>
+<p>Si tu connectes ton compte Google à Enhydra, l'application te demande l'autorisation de lire et modifier les rendez-vous de ton agenda Google (autorisation « Google Agenda »). Elle ne demande rien d'autre.</p>
+<ul>
+<li><b>À quoi ça sert</b> : synchroniser tes rendez-vous entre Google Agenda et l'agenda d'Enhydra. Rien d'autre.</li>
+<li><b>Où c'est stocké</b> : sur le serveur qui héberge ton instance. L'éditeur d'Enhydra n'y a pas accès.</li>
+<li><b>Partage</b> : les données Google ne sont ni vendues, ni louées, ni transmises à des tiers, ni utilisées pour de la publicité. Seul ton assistant Hermes peut les lire, pour répondre à tes demandes ; il peut alors transmettre ce qu'il lit au fournisseur d'IA que tu as choisi (point 4), uniquement pour te répondre.</li>
+<li><b>Respect de la politique de Google</b> : l'utilisation par Enhydra des informations reçues des API Google respecte la <a href="https://developers.google.com/terms/api-services-user-data-policy">politique relative aux données utilisateur des services d'API Google</a>, y compris les exigences d'utilisation limitée.</li>
+<li><b>Arrêter</b> : « Couper la liaison » dans Enhydra, ou retire l'accès sur <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Les rendez-vous déjà copiés dans Enhydra restent dans ton agenda Enhydra jusqu'à ce que tu les supprimes.</li>
+</ul>
+
+<h2>5. Tes droits</h2>
+<p>Tu peux demander l'accès, la correction, l'export ou la suppression de tes données à la personne qui héberge ton instance. L'export des notes est intégré à l'application, et la suppression d'un compte efface ses données de l'instance. Pour toute question sur ce site ou sur le logiciel : <a href="mailto:contact@nolancrrd.fr">contact@nolancrrd.fr</a>.</p>
+
+<h2>6. Sécurité</h2>
+<p>Les mots de passe sont hachés, le Coffre est chiffré, la communication passe par HTTPS. Le logiciel est libre : son code peut être lu et vérifié par tous sur <a href="https://github.com/nolanCrrd/Enhydra">GitHub</a>.</p>
+
+<h2>7. Modifications</h2>
+<p>Cette page peut évoluer ; la date en haut indique la dernière mise à jour.</p>
+</div>
+</main>
+<footer><div class="wrap">
+  <div>Enhydra, logiciel libre (AGPL-3.0) · fait par <a href="https://github.com/nolanCrrd">Nolan Correard</a></div>
+  <nav aria-label="Informations">
+    <a href="/confidentialite">Confidentialité</a>
+    <a href="/conditions">Conditions d'utilisation</a>
+    <a href="https://github.com/nolanCrrd/Enhydra">Code source</a>
+    <a href="mailto:contact@nolancrrd.fr">Contact</a>
+  </nav>
+</div></footer>
+</body>
+</html>

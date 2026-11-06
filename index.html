@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enhydra · Ton assistant personnel, chez toi</title>
+<meta name="description" content="Un chat avec une IA qui agit, une mémoire que tu possèdes, un coffre pour tes accès. Libre, auto-hébergé, en français.">
+<meta name="theme-color" content="#f3eee8">
+<meta property="og:title" content="Enhydra · Ton assistant personnel, chez toi">
+<meta property="og:description" content="Un chat avec une IA qui agit, une mémoire que tu possèdes, un coffre pour tes accès. Libre, auto-hébergé, en français.">
+<meta property="og:image" content="/img/logo-512.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><img src="/img/logo-192.png" alt="" width="36" height="36">Enhydra</a>
+  <nav aria-label="Principal">
+    <a class="opt" href="/#fonctions">Fonctions</a>
+    <a class="opt" href="/#installer">Installer</a>
+    <a href="https://github.com/nolanCrrd/Enhydra">GitHub</a>
+  </nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>Ton assistant personnel, chez toi.</h1>
+    <p class="lead">Un chat avec une IA qui agit, une mémoire que tu possèdes, un coffre pour tes accès. Sur ton serveur, dans une appli que tu ouvres comme n'importe quelle autre.</p>
+    <div class="cta">
+      <a class="btn" href="#installer">Installer Enhydra</a>
+      <a class="btn plain" href="#fonctions">Voir ce qu'il fait</a>
+    </div>
+  </div>
+  <div class="shots" aria-hidden="true">
+    <img src="/img/hermes.webp" alt="" width="280" height="574">
+    <img src="/img/accueil.webp" alt="" width="280" height="574">
+  </div>
+</div></section>
+
+<section id="fonctions" class="alt"><div class="wrap">
+  <h2>Ce que tu y trouves</h2>
+  <p class="intro">Une seule application, sur ton téléphone et ton ordinateur, en français, avec un mode clair et un mode sombre.</p>
+  <div class="grid">
+    <div class="card"><h3>Hermes, ton assistant</h3><p>Écris-lui ou parle-lui : « Range cette note dans Recettes », « Rappelle-moi demain à 9 h d'appeler le garage ». Il ne se contente pas de répondre, il agit.</p></div>
+    <div class="card"><h3>Une mémoire à toi</h3><p>Tes notes en fichiers Markdown, rangées en dossiers, avec des liens entre elles. Tout marche sans réseau et repart tout seul au retour de la connexion.</p></div>
+    <div class="card"><h3>Un coffre verrouillé</h3><p>Tes mots de passe chiffrés, protégés par le mot de passe de ton compte. Il se referme dès que tu quittes l'appli. Hermes n'en lit un que quand tu lui demandes d'agir.</p></div>
+    <div class="card"><h3>Agenda et rappels</h3><p>Tâches, rendez-vous qui se répètent, rappels qui sonnent à l'heure, même appli fermée.</p></div>
+    <div class="card"><h3>Des tâches automatiques</h3><p>« Chaque matin à 7 h, fais-moi un résumé » : les résultats arrivent sur ton accueil, en cartes lisibles.</p></div>
+    <div class="card"><h3>Pour toute la famille</h3><p>Invite tes proches par un simple lien. Chacun a son compte et son propre Hermes, séparés des autres.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>En images</h2>
+  <p class="intro">Captures de l'instance de démonstration (données fictives).</p>
+  <div class="gallery">
+    <figure><img src="/img/accueil.webp" alt="L'accueil d'Enhydra : tâches du jour et bouton pour parler à Hermes" width="280" height="574" loading="lazy"><figcaption><b>L'accueil</b>Ta journée en un coup d'œil</figcaption></figure>
+    <figure><img src="/img/hermes.webp" alt="Une conversation avec Hermes" width="280" height="574" loading="lazy"><figcaption><b>Hermes</b>Il répond, et il agit</figcaption></figure>
+    <figure><img src="/img/memoire.webp" alt="La Mémoire : notes et dossiers" width="280" height="574" loading="lazy"><figcaption><b>La Mémoire</b>Tes notes, rangées</figcaption></figure>
+    <figure><img src="/img/coffre.webp" alt="Le Coffre verrouillé, qui demande le mot de passe du compte" width="280" height="574" loading="lazy"><figcaption><b>Le Coffre</b>Verrouillé par ton mot de passe</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Ce qui le distingue</h2>
+  <p class="intro">Les assistants IA vivent chez quelqu'un d'autre. Enhydra fait l'inverse.</p>
+  <ul class="checks">
+    <li><b>Tes données restent chez toi.</b> Notes en fichiers, base SQLite, coffre chiffré : tu peux tout lire, sauvegarder et emporter.</li>
+    <li><b>Un Hermes isolé par personne.</b> Mémoire, tâches et terminal séparés : personne ne voit les données des autres, pas même l'administrateur.</li>
+    <li><b>Une commande pour installer</b>, une pour mettre à jour.</li>
+    <li><b>Open source (AGPL-3.0).</b> Tu peux lire le code, le modifier et l'héberger.</li>
+  </ul>
+</div></section>
+
+<section id="installer"><div class="wrap narrow">
+  <h2>Installer chez toi</h2>
+  <p class="intro">Il te faut un serveur Linux avec 4 Go de mémoire (un petit VPS suffit) et, pour l'application Android, un nom de domaine.</p>
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/nolanCrrd/Enhydra/main/install.sh | sudo bash</code></pre>
+  <p>L'installateur s'occupe de tout : Docker si besoin, secrets, HTTPS automatique, choix de ton fournisseur d'IA et de ton modèle, puis ton compte administrateur. Tu peux le relancer sans rien casser.</p>
+  <p>Mise à jour en une commande :</p>
+  <pre><code>sudo /opt/enhydra/update.sh</code></pre>
+  <p>Guide complet, application Android, sauvegardes : <a href="https://github.com/nolanCrrd/Enhydra">le dépôt sur GitHub</a>.</p>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div>Enhydra, logiciel libre (AGPL-3.0) · fait par <a href="https://github.com/nolanCrrd">Nolan Correard</a></div>
+  <nav aria-label="Informations">
+    <a href="/confidentialite">Confidentialité</a>
+    <a href="/conditions">Conditions d'utilisation</a>
+    <a href="https://github.com/nolanCrrd/Enhydra">Code source</a>
+    <a href="mailto:contact@nolancrrd.fr">Contact</a>
+  </nav>
+</div></footer>
+</body>
+</html>
