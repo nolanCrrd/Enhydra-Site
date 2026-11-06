@@ -1,7 +1,9 @@
 # Site d'Enhydra
 
 Site de présentation d'[Enhydra](https://github.com/nolanCrrd/Enhydra) : accueil, politique de confidentialité,
-conditions d'utilisation. HTML et CSS statiques, sans framework ni suivi (aucun cookie, aucune mesure d'audience).
+conditions d'utilisation. HTML, CSS et un petit fichier JavaScript (`public/site.js` : animations au défilement, démonstration du chat,
+copie des commandes), sans framework ni suivi (aucun cookie, aucune mesure d'audience). Sans JavaScript, ou si la
+personne demande moins de mouvement (réglage du système), tout s'affiche tel quel, sans animation.
 
 ## Modifier
 

@@ -88,3 +88,119 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .notice { border-left: 4px solid var(--teal); background: var(--card); padding: 14px 18px; border-radius: 0 14px 14px 0; }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ───────── Animations (désactivées si la personne demande moins de mouvement) ───────── */
+:root { --spring: cubic-bezier(.34, 1.56, .64, 1); --out: cubic-bezier(.22, 1, .36, 1); }
+
+#progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 50; background: linear-gradient(90deg, var(--teal), var(--brown)); transform: scaleX(0); transform-origin: left; }
+header.top { position: sticky; top: 0; z-index: 40; transition: background .3s, box-shadow .3s, padding .3s; }
+header.top.stuck { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); padding: 10px 0; }
+.brand img { transition: transform .5s var(--spring); }
+.brand:hover img { transform: rotate(-12deg) scale(1.12); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { position: relative; z-index: 1; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .45; pointer-events: none; }
+.blob.b1 { width: 420px; height: 420px; background: var(--teal); top: -120px; right: -80px; animation: drift 16s ease-in-out infinite alternate; }
+.blob.b2 { width: 340px; height: 340px; background: #d98c5f; bottom: -140px; left: -80px; animation: drift 20s ease-in-out infinite alternate-reverse; }
+@keyframes drift { to { transform: translate(40px, 30px) scale(1.12); } }
+.js .split span { display: inline-block; opacity: 0; transform: translateY(.5em) scale(.9); animation: wordpop .7s var(--spring) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
+@keyframes wordpop { to { opacity: 1; transform: none; } }
+.js .hero .lead, .js .hero .rotor, .js .hero .cta { opacity: 0; animation: rise .8s var(--out) forwards; }
+.js .hero .lead { animation-delay: .65s; } .js .hero .rotor { animation-delay: .8s; } .js .hero .cta { animation-delay: .95s; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.rotor { font: 500 1.25rem var(--serif); color: var(--mute); margin: -10px 0 26px; min-height: 1.6em; }
+.rotor b { color: var(--teal); font-weight: 500; display: inline-block; transition: opacity .35s, transform .35s var(--out); }
+.rotor b.out { opacity: 0; transform: translateY(-.4em); }
+.rotor b.in { opacity: 0; transform: translateY(.4em); transition: none; }
+
+.shots { perspective: 900px; }
+.js .shots img { opacity: 0; animation: phonein 1s var(--spring) forwards, bob 6s ease-in-out 1.2s infinite; }
+.js .shots img:nth-child(1) { animation-delay: .5s, 1.5s; }
+.js .shots img:nth-child(2) { animation-delay: .75s, 2.2s; }
+@keyframes phonein { from { opacity: 0; translate: 0 60px; } to { opacity: 1; translate: 0 0; } }
+@keyframes bob { 50% { translate: 0 -10px; } }
+.shots { --rx: 0deg; --ry: 0deg; }
+.shots img { transition: rotate .2s; }
+
+/* Boutons */
+.btn { position: relative; overflow: hidden; transition: transform .25s var(--spring), box-shadow .25s, filter .2s; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px #2b1d1630; }
+.btn:active { transform: translateY(0) scale(.97); }
+.btn.shine::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, #ffffff55 50%, transparent 65%); transform: translateX(-120%); animation: shine 3.6s ease-in-out 2s infinite; }
+@keyframes shine { 40%, 100% { transform: translateX(120%); } }
+
+/* Apparitions au défilement */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--out), transform .8s var(--out); transition-delay: var(--d, 0s); }
+.js .pop { opacity: 0; transform: translateY(24px) scale(.9); transition: opacity .5s var(--out), transform .7s var(--spring); transition-delay: var(--d, 0s); }
+.js .slide { opacity: 0; transform: translateX(-34px); transition: opacity .6s var(--out), transform .7s var(--spring); transition-delay: var(--d, 0s); }
+.js .reveal.seen, .js .pop.seen, .js .slide.seen { opacity: 1; transform: none; }
+.card { transition: transform .3s var(--spring), box-shadow .3s, border-color .3s; }
+.card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 16px 34px #2b1d1620; border-color: var(--teal); }
+.js .card.pop.seen:hover { transform: translateY(-6px) rotate(-.4deg); }
+.gallery img { transition: transform .4s var(--spring), box-shadow .4s; }
+.gallery figure:hover img { transform: translateY(-8px) rotate(1.5deg) scale(1.03); box-shadow: 0 22px 44px #2b1d1636; }
+
+/* Chiffres */
+section.stats { padding: 20px 0 8px; }
+.stats .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; text-align: center; }
+.stats .wrap > div { padding: 20px 10px; }
+.stats b { display: block; font: 500 clamp(2.6rem, 7vw, 3.8rem)/1 var(--serif); color: var(--teal); }
+.stats span { color: var(--mute); }
+
+/* Démo du chat */
+.demo { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; }
+@media (max-width: 800px) { .demo { grid-template-columns: 1fr; } .phone { margin: 0 auto; } }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { border: 2px solid var(--line); background: var(--card); color: var(--ink); font: 600 .9375rem var(--sans); padding: 10px 18px; border-radius: 999px; cursor: pointer; transition: transform .25s var(--spring), background .2s, border-color .2s, color .2s; }
+.chip:hover { transform: translateY(-2px); border-color: var(--teal); }
+.chip.on { background: var(--teal); border-color: var(--teal); color: #fff; }
+.chip:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.phone { width: 100%; max-width: 340px; border-radius: 34px; border: 8px solid var(--brown); background: var(--card); box-shadow: 0 26px 60px #2b1d162e; overflow: hidden; }
+.js .phone.pop-in { opacity: 0; transform: translateY(40px) scale(.92) rotate(2deg); transition: opacity .6s var(--out), transform .9s var(--spring); transition-delay: var(--d, 0s); }
+.js .phone.pop-in.seen { opacity: 1; transform: none; }
+.phone-bar { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); font: 500 1.125rem var(--serif); }
+.phone-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 0 #2f7f7255; animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px #2f7f7200; } 100% { box-shadow: 0 0 0 0 #2f7f7200; } }
+.chat { height: 340px; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; font-size: .9688rem; line-height: 1.45; overflow: hidden; }
+.msg { max-width: 86%; padding: 10px 14px; border-radius: 18px; animation: bubble .5s var(--spring); }
+.msg.me { align-self: flex-end; background: var(--brown); color: var(--on); border-bottom-right-radius: 6px; }
+.msg.bot { align-self: flex-start; background: var(--bg); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.msg .caret { display: inline-block; width: 2px; height: 1em; background: currentColor; margin-left: 1px; vertical-align: -2px; animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes bubble { from { opacity: 0; transform: translateY(12px) scale(.85); } }
+.typing { align-self: flex-start; display: flex; gap: 5px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 18px; border-bottom-left-radius: 6px; animation: bubble .4s var(--spring); }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); animation: dots 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dots { 40% { transform: translateY(-6px); opacity: .5; } }
+.cardmsg { align-self: flex-start; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 16px; background: var(--card); border: 2px solid var(--teal); animation: cardpop .7s var(--spring); }
+@keyframes cardpop { 0% { opacity: 0; transform: scale(.6) rotate(-4deg); } }
+.cardmsg .ico { width: 36px; height: 36px; flex: none; border-radius: 50%; background: var(--teal); position: relative; }
+.cardmsg .ico::after { content: ""; position: absolute; left: 12px; top: 9px; width: 8px; height: 14px; border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.cardmsg span { display: grid; line-height: 1.3; }
+.cardmsg small { color: var(--mute); }
+
+/* Cases à cocher des atouts : la coche se dessine */
+.js ul.checks li::before { transition: transform .5s var(--spring) .2s; transform: rotate(-45deg) scale(0); }
+.js ul.checks li.seen::before { transform: rotate(-45deg) scale(1); }
+
+/* Boîtes de code */
+.codebox { position: relative; margin: 0 0 18px; }
+.codebox pre { margin: 0; padding-right: 96px; }
+.copy { position: absolute; top: 10px; right: 10px; border: 0; border-radius: 999px; padding: 8px 16px; background: #ffffff1f; color: #f2ebe4; font: 600 .8125rem var(--sans); cursor: pointer; transition: transform .25s var(--spring), background .2s; }
+.copy:hover { background: #ffffff38; transform: scale(1.06); }
+.copy.done { background: var(--teal); color: #fff; animation: copied .5s var(--spring); }
+@keyframes copied { 40% { transform: scale(1.18); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal, .js .pop, .js .slide, .js .split span, .js .hero .lead, .js .hero .rotor, .js .hero .cta, .js .shots img, .js .phone.pop-in { opacity: 1 !important; transform: none !important; }
+  .js ul.checks li::before { transform: rotate(-45deg) !important; }
+}
+/* Les halos de couleur se fondent dans le fond (pas de bord net en haut ni en bas du bandeau) */
+.hero::before, .hero::after { content: ""; position: absolute; left: 0; right: 0; height: 110px; z-index: 0; pointer-events: none; }
+.hero::before { top: 0; background: linear-gradient(var(--bg), transparent); }
+.hero::after { bottom: 0; background: linear-gradient(transparent, var(--bg)); }
+.hero { isolation: isolate; }
+.blob { z-index: -1; }

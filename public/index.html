@@ -14,8 +14,10 @@
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
+<script src="/site.js"></script>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
 <header class="top"><div class="wrap">
   <a class="brand" href="/"><img src="/img/logo-192.png" alt="" width="36" height="36">Enhydra</a>
   <nav aria-label="Principal">
@@ -25,64 +27,91 @@
   </nav>
 </div></header>
 <main>
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="blob b1" aria-hidden="true"></div><div class="blob b2" aria-hidden="true"></div><div class="wrap">
   <div>
-    <h1>Ton assistant personnel, chez toi.</h1>
+    <h1 class="split"><span style="--i:0">Ton</span> <span style="--i:1">assistant</span> <span style="--i:2">personnel,</span> <span style="--i:3">chez</span> <span style="--i:4">toi.</span></h1>
     <p class="lead">Un chat avec une IA qui agit, une mémoire que tu possèdes, un coffre pour tes accès. Sur ton serveur, dans une appli que tu ouvres comme n'importe quelle autre.</p>
+    <p class="rotor" aria-hidden="true">Il <b data-rotor="range tes notes|rappelle tes rendez-vous|garde tes mots de passe|prépare ton résumé du matin">range tes notes</b></p>
     <div class="cta">
-      <a class="btn" href="#installer">Installer Enhydra</a>
-      <a class="btn plain" href="#fonctions">Voir ce qu'il fait</a>
+      <a class="btn shine" href="#installer">Installer Enhydra</a>
+      <a class="btn plain" href="#demo">Le voir en action</a>
     </div>
   </div>
-  <div class="shots" aria-hidden="true">
+  <div class="shots" aria-hidden="true" data-tilt>
     <img src="/img/hermes.webp" alt="" width="280" height="574">
     <img src="/img/accueil.webp" alt="" width="280" height="574">
   </div>
 </div></section>
 
+<section class="stats"><div class="wrap">
+  <div class="pop"><b data-count="1">1</b><span>commande pour installer</span></div>
+  <div class="pop" style="--d:.1s"><b data-count="0">0</b><span>cookie, traceur ou publicité</span></div>
+  <div class="pop" style="--d:.2s"><b data-count="100" data-suffix=" %">100 %</b><span>de tes données chez toi</span></div>
+</div></section>
+
+<section id="demo"><div class="wrap demo">
+  <div>
+    <h2 class="reveal">Dis-le. C'est fait.</h2>
+    <p class="intro reveal" style="--d:.08s">Tu écris comme à un ami. Hermes comprend, range, programme, et te répond avec une carte claire. Pas de menu à fouiller.</p>
+    <div class="chips reveal" style="--d:.16s" role="tablist" aria-label="Exemples">
+      <button class="chip on" data-scene="0" role="tab" aria-selected="true">Un rappel</button>
+      <button class="chip" data-scene="1" role="tab" aria-selected="false">Une note</button>
+      <button class="chip" data-scene="2" role="tab" aria-selected="false">Une tâche automatique</button>
+    </div>
+  </div>
+  <div class="phone reveal pop-in" style="--d:.1s" aria-hidden="true">
+    <div class="phone-bar"><span class="dot"></span><b>Hermes</b></div>
+    <div class="chat" id="chat">
+      <div class="msg me">Rappelle-moi demain à 9 h d'appeler le garage</div>
+      <div class="msg bot">C'est noté. Je te le rappelle demain à 9 h.</div>
+      <div class="cardmsg"><i class="ico"></i><span><b>Appeler le garage</b><small>Demain · 9 h 00</small></span></div>
+    </div>
+  </div>
+</div></section>
+
 <section id="fonctions" class="alt"><div class="wrap">
-  <h2>Ce que tu y trouves</h2>
-  <p class="intro">Une seule application, sur ton téléphone et ton ordinateur, en français, avec un mode clair et un mode sombre.</p>
+  <h2 class="reveal">Ce que tu y trouves</h2>
+  <p class="intro reveal" style="--d:.06s">Une seule application, sur ton téléphone et ton ordinateur, en français, avec un mode clair et un mode sombre.</p>
   <div class="grid">
-    <div class="card"><h3>Hermes, ton assistant</h3><p>Écris-lui ou parle-lui : « Range cette note dans Recettes », « Rappelle-moi demain à 9 h d'appeler le garage ». Il ne se contente pas de répondre, il agit.</p></div>
-    <div class="card"><h3>Une mémoire à toi</h3><p>Tes notes en fichiers Markdown, rangées en dossiers, avec des liens entre elles. Tout marche sans réseau et repart tout seul au retour de la connexion.</p></div>
-    <div class="card"><h3>Un coffre verrouillé</h3><p>Tes mots de passe chiffrés, protégés par le mot de passe de ton compte. Il se referme dès que tu quittes l'appli. Hermes n'en lit un que quand tu lui demandes d'agir.</p></div>
-    <div class="card"><h3>Agenda et rappels</h3><p>Tâches, rendez-vous qui se répètent, rappels qui sonnent à l'heure, même appli fermée.</p></div>
-    <div class="card"><h3>Des tâches automatiques</h3><p>« Chaque matin à 7 h, fais-moi un résumé » : les résultats arrivent sur ton accueil, en cartes lisibles.</p></div>
-    <div class="card"><h3>Pour toute la famille</h3><p>Invite tes proches par un simple lien. Chacun a son compte et son propre Hermes, séparés des autres.</p></div>
+    <div class="card pop"><h3>Hermes, ton assistant</h3><p>Écris-lui ou parle-lui : « Range cette note dans Recettes », « Rappelle-moi demain à 9 h d'appeler le garage ». Il ne se contente pas de répondre, il agit.</p></div>
+    <div class="card pop" style="--d:.07s"><h3>Une mémoire à toi</h3><p>Tes notes en fichiers Markdown, rangées en dossiers, avec des liens entre elles. Tout marche sans réseau et repart tout seul au retour de la connexion.</p></div>
+    <div class="card pop" style="--d:.14s"><h3>Un coffre verrouillé</h3><p>Tes mots de passe chiffrés, protégés par le mot de passe de ton compte. Il se referme dès que tu quittes l'appli. Hermes n'en lit un que quand tu lui demandes d'agir.</p></div>
+    <div class="card pop" style="--d:.21s"><h3>Agenda et rappels</h3><p>Tâches, rendez-vous qui se répètent, rappels qui sonnent à l'heure, même appli fermée.</p></div>
+    <div class="card pop" style="--d:.28s"><h3>Des tâches automatiques</h3><p>« Chaque matin à 7 h, fais-moi un résumé » : les résultats arrivent sur ton accueil, en cartes lisibles.</p></div>
+    <div class="card pop" style="--d:.35s"><h3>Pour toute la famille</h3><p>Invite tes proches par un simple lien. Chacun a son compte et son propre Hermes, séparés des autres.</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <h2>En images</h2>
-  <p class="intro">Captures de l'instance de démonstration (données fictives).</p>
+  <h2 class="reveal">En images</h2>
+  <p class="intro reveal" style="--d:.06s">Captures de l'instance de démonstration (données fictives).</p>
   <div class="gallery">
-    <figure><img src="/img/accueil.webp" alt="L'accueil d'Enhydra : tâches du jour et bouton pour parler à Hermes" width="280" height="574" loading="lazy"><figcaption><b>L'accueil</b>Ta journée en un coup d'œil</figcaption></figure>
-    <figure><img src="/img/hermes.webp" alt="Une conversation avec Hermes" width="280" height="574" loading="lazy"><figcaption><b>Hermes</b>Il répond, et il agit</figcaption></figure>
-    <figure><img src="/img/memoire.webp" alt="La Mémoire : notes et dossiers" width="280" height="574" loading="lazy"><figcaption><b>La Mémoire</b>Tes notes, rangées</figcaption></figure>
-    <figure><img src="/img/coffre.webp" alt="Le Coffre verrouillé, qui demande le mot de passe du compte" width="280" height="574" loading="lazy"><figcaption><b>Le Coffre</b>Verrouillé par ton mot de passe</figcaption></figure>
+    <figure class="pop"><img src="/img/accueil.webp" alt="L'accueil d'Enhydra : tâches du jour et bouton pour parler à Hermes" width="280" height="574" loading="lazy"><figcaption><b>L'accueil</b>Ta journée en un coup d'œil</figcaption></figure>
+    <figure class="pop" style="--d:.1s"><img src="/img/hermes.webp" alt="Une conversation avec Hermes" width="280" height="574" loading="lazy"><figcaption><b>Hermes</b>Il répond, et il agit</figcaption></figure>
+    <figure class="pop" style="--d:.2s"><img src="/img/memoire.webp" alt="La Mémoire : notes et dossiers" width="280" height="574" loading="lazy"><figcaption><b>La Mémoire</b>Tes notes, rangées</figcaption></figure>
+    <figure class="pop" style="--d:.3s"><img src="/img/coffre.webp" alt="Le Coffre verrouillé, qui demande le mot de passe du compte" width="280" height="574" loading="lazy"><figcaption><b>Le Coffre</b>Verrouillé par ton mot de passe</figcaption></figure>
   </div>
 </div></section>
 
 <section class="alt"><div class="wrap">
-  <h2>Ce qui le distingue</h2>
-  <p class="intro">Les assistants IA vivent chez quelqu'un d'autre. Enhydra fait l'inverse.</p>
+  <h2 class="reveal">Ce qui le distingue</h2>
+  <p class="intro reveal" style="--d:.06s">Les assistants IA vivent chez quelqu'un d'autre. Enhydra fait l'inverse.</p>
   <ul class="checks">
-    <li><b>Tes données restent chez toi.</b> Notes en fichiers, base SQLite, coffre chiffré : tu peux tout lire, sauvegarder et emporter.</li>
-    <li><b>Un Hermes isolé par personne.</b> Mémoire, tâches et terminal séparés : personne ne voit les données des autres, pas même l'administrateur.</li>
-    <li><b>Une commande pour installer</b>, une pour mettre à jour.</li>
-    <li><b>Open source (AGPL-3.0).</b> Tu peux lire le code, le modifier et l'héberger.</li>
+    <li class="slide"><b>Tes données restent chez toi.</b> Notes en fichiers, base SQLite, coffre chiffré : tu peux tout lire, sauvegarder et emporter.</li>
+    <li class="slide" style="--d:.1s"><b>Un Hermes isolé par personne.</b> Mémoire, tâches et terminal séparés : personne ne voit les données des autres, pas même l'administrateur.</li>
+    <li class="slide" style="--d:.2s"><b>Une commande pour installer</b>, une pour mettre à jour.</li>
+    <li class="slide" style="--d:.3s"><b>Open source (AGPL-3.0).</b> Tu peux lire le code, le modifier et l'héberger.</li>
   </ul>
 </div></section>
 
 <section id="installer"><div class="wrap narrow">
-  <h2>Installer chez toi</h2>
-  <p class="intro">Il te faut un serveur Linux avec 4 Go de mémoire (un petit VPS suffit) et, pour l'application Android, un nom de domaine.</p>
-  <pre><code>curl -fsSL https://raw.githubusercontent.com/nolanCrrd/Enhydra/main/install.sh | sudo bash</code></pre>
-  <p>L'installateur s'occupe de tout : Docker si besoin, secrets, HTTPS automatique, choix de ton fournisseur d'IA et de ton modèle, puis ton compte administrateur. Tu peux le relancer sans rien casser.</p>
-  <p>Mise à jour en une commande :</p>
-  <pre><code>sudo /opt/enhydra/update.sh</code></pre>
-  <p>Guide complet, application Android, sauvegardes : <a href="https://github.com/nolanCrrd/Enhydra">le dépôt sur GitHub</a>.</p>
+  <h2 class="reveal">Installer chez toi</h2>
+  <p class="intro reveal" style="--d:.06s">Il te faut un serveur Linux avec 4 Go de mémoire (un petit VPS suffit) et, pour l'application Android, un nom de domaine.</p>
+  <div class="codebox reveal" style="--d:.1s"><pre><code>curl -fsSL https://raw.githubusercontent.com/nolanCrrd/Enhydra/main/install.sh | sudo bash</code></pre><button class="copy" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/nolanCrrd/Enhydra/main/install.sh | sudo bash">Copier</button></div>
+  <p class="reveal" style="--d:.14s">L'installateur s'occupe de tout : Docker si besoin, secrets, HTTPS automatique, choix de ton fournisseur d'IA et de ton modèle, puis ton compte administrateur. Tu peux le relancer sans rien casser.</p>
+  <p class="reveal" style="--d:.18s">Mise à jour en une commande :</p>
+  <div class="codebox reveal" style="--d:.2s"><pre><code>sudo /opt/enhydra/update.sh</code></pre><button class="copy" type="button" data-copy="sudo /opt/enhydra/update.sh">Copier</button></div>
+  <p class="reveal" style="--d:.24s">Guide complet, application Android, sauvegardes : <a href="https://github.com/nolanCrrd/Enhydra">le dépôt sur GitHub</a>.</p>
 </div></section>
 </main>
 <footer><div class="wrap">
